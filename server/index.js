@@ -1,7 +1,13 @@
-const Koa = require('koa');
+const Koa = require('koa'); //koa2 框架
 const app = new Koa();
+const port = 2345;
+const {normal} = require('./tpl/index');
+
 app.use(async (ctx, next) => {
-  ctx.body = `<h1>电影首页</h1>`;
+  ctx.type = 'text/html; charset=utf-8';
+  ctx.body = normal;
   await next();
 });
-app.listen(2345);
+app.listen(port, () => {
+  console.log(`浏览器访问 http://localhost:${port}`);
+});
